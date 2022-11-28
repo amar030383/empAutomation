@@ -1,0 +1,21 @@
+{%  extends 'main.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="col-md-6">
+	<!-- User input form -->
+	<div class="card card-body">
+		<form action = '' method="post">	
+			<table class="table table-sm">
+				<center><a class="btn btn-primary  btn-sm btn-block" href="">Please fill the form below</a></center>
+				<tr>
+					{% csrf_token %}
+					{{form.as_table}}
+				</tr>
+			</table>
+			<center><input type="submit" value = 'Create Upgrade Job'></center>
+		</form>
+	</div>
+
+</div>
+{% endblock content %}

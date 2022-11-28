@@ -1,0 +1,80 @@
+{%  extends 'main.html' %}
+{% block content %}
+<br>
+
+<div class="col-md-6">
+	<div class="card card-body">
+		<a class="btn btn-primary  btn-sm btn-block" href="">Image Transfer Output</a>
+		<div>
+			<table class="table">
+				<tr>
+					<td>Upload Status</td>
+					<td>: {{tftp_image_upload_msg}}</td>
+				</tr>
+
+				<tr>
+					<td>Log </td>
+					<td>: {{result}}</td>
+				</tr>
+
+			</table>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="card card-body">
+		<a class="btn btn-primary  btn-sm btn-block" href="">MD5 Match Report</a>
+		<div>
+			<table class="table">
+				<tr>
+				<th>Validated</th>
+				<th>Status</th>
+				</tr>
+
+				<tr>
+				<td>TFTP Image MD5</td>
+				<td>: {{ tftp_md5_match }}</td>
+				</tr>
+
+				<tr>
+				<td>Device Image MD5</td>
+				<td>: {{ device_generated_md5 }}</td>
+				</tr>
+
+				<tr>
+				<td>MD5 Value</td>
+				<td>: {{ md5matched }}</td>
+				</tr>
+			</table>
+	
+		</div>
+	</div>
+
+	<br>
+	<!-- Change Bootvar and reload -->
+	<div class="card card-body">	
+		<a class="btn btn-primary  btn-sm btn-block" href="">Change BootVar and Reload</a>
+		<form action="{% url 'changeBootReload' %}" method="post">
+		{% csrf_token %}
+		<table class="table table-">
+			<tr>
+				<th></th>
+				<th>Current Image</th>
+				<th>New Image</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td>{{ current_image }}</td>
+				<td>{{ image_Name }}</td>	
+				<td></td>
+			</tr>
+			<input type="hidden" name="id" value = '{{id}}'/>	
+		</table>
+		<center><input type="submit" value = 'Change Bootvar & Reload'></center>
+		</form>
+	</div>
+	<br>
+</div>
+
+{% endblock %}

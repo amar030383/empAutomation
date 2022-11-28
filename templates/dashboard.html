@@ -1,0 +1,56 @@
+{%  extends 'main.html' %}
+{% block content %}
+{%  include 'status.html' %}
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'upgrade_input' %}">New Upgrade</a>
+			<table class="table table-">
+				<tr>
+					<th>Job ID</th>
+					<th>Change No</th>
+					<th>Device Type</th>
+					<th>Device IP</th>
+					<th>TFTP IP</th>
+					<th>Image Name</th>
+					<th>Created By</th>
+					<th>Created On</th>
+					
+				</tr>
+				
+				{% for order in paged_data %}
+				<tr>
+					<td><a href="{% url 'displayUpgrade' order.id %}">{{ order.id }}</a></td>
+					<td>{{ order.change_No }}</td>
+					<td>{{ order.device_Type }}</td>
+					<td>{{ order.device_IP }}</td>
+					<td>{{ order.tFTP_IP }}</td>
+					<td>{{ order.image_Name }}</td>
+					<td>Amarjeet</td>
+					<td>{{ order.date_created }}</td>
+					
+				<td><a  class ='btn btn-sm btn-danger' href="{% url 'deleteUpgrade' order.id %}">Delete</a></td>						
+				<td><a  class ='btn btn-sm btn-info' href="{% url 'editUpgrade' order.id %}">Update</a></td>	
+				<td><a  class ='btn btn-sm btn-info' href="{% url 'startUpgrade' order.id %}">Start Upgrade</a></td>	
+				</tr>
+				{% endfor %}		
+			</table>
+		</div>
+	</div>
+</div>
+<br>
+{% if paged_data.has_previous %}
+	<a href="?page=1">&laquo First</a>
+	<a href="?page={{paged_data.previous_page_number }}">Previous</a>
+{% endif %}
+
+Page {{paged_data.number}} of {{paged_data.paginator.num_pages}}
+
+{% if paged_data.has_next %}
+	<a href="?page={{paged_data.next_page_number }}">Next</a>
+	<a href="?page={{paged_data.paginator.num_pages }}">Last &raquo</a>
+{% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,103 @@
+{%  extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<script> sessionStorage.setItem('id' , '{{id}}'); </script>
+
+<div class="col-md-6">
+	<br>
+	<!-- Validation check -->
+	<div class="card card-body">
+		<a class="btn btn-primary  btn-sm btn-block" href="">Validation Result</a>
+		<table class="table">
+			<tr>
+			  <th>Validated</th>
+			  <th>Status</th>
+			</tr>
+			<tr>
+			  <td>Device Reachable</td>
+			  <td>: {{ device_status }}</td>
+			</tr>
+			<tr>
+				<td>TFTP Reachable</td>
+				<td>: {{ tftp_status }}</td>
+			</tr>
+			<tr>
+				<td>Image Available</td>
+				<td>: {{ image_available }}</td>
+			</tr>
+			<tr>
+				<td>TFTP MD5 Value</td>
+				<td>: {{ md5_match }}</td>
+			</tr>
+			<tr>
+				<td>Device Free Space</td>
+				<td>: {{ free_space }} MB</td>
+			</tr>
+
+			<tr>
+				<td>Current Image</td>
+				<td>: {{ current_image }} </td>
+			</tr>
+			<tr>
+				<td>Proceed</td>
+				<b><td>: {{ upgrade_goahead }} </td></b>
+			</tr>
+
+		  </table>
+		
+	</div>
+
+	<br>
+
+	<!-- Configuration Output -->
+	<div class="card card-body">
+		<a class="btn btn-primary  btn-sm btn-block" href="">Config Output</a>
+		{%  include 'outputbox.html' %}
+	</div>
+
+	<br>
+
+	<!-- Upload Image -->
+	<div class="card card-body">
+		<script>
+			var tftp_ips = sessionStorage.getItem('tftp_ip')
+			console.log(tftp_ips)
+		</script>
+		<form action = "{% url 'upload_image' %}" method="post">	
+			{% csrf_token %}
+				<a class="btn btn-primary  btn-sm btn-block" href="">Upload Image</a>
+				<table class="table table-">
+					<tr>
+						<th></th>
+						<th>Copy Image</th>
+						<th>From Server</th>
+						<th>To Device</th>
+						<th>Upload Minutes</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td>{{ image_Name }}</td>
+						<td>{{ tFTP_IP }}</td>	
+						<td>{{ device_IP }}</td>
+						<td>
+							<select class="selectbox" name="upload_time" required>
+								<script language="javascript" type="text/javascript"> 
+									var time = new Array("6", '9','12', '15',"18", '21',"24" );
+									for (i=0;i<time.length;i++)
+									{
+										document.write("<option>"+time[i]+"</option>");
+									}
+								</script>
+							</select>
+						</td>
+					</tr>
+						<input type="hidden" name="id" value = '{{id}}'/>	
+					</table>			
+		<center><input type="submit" value = 'Start Upload'></center>
+		</form>
+	</div>
+</div>
+
+
+{% endblock content %}

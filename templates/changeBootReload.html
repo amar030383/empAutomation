@@ -1,0 +1,43 @@
+{%  extends 'main.html' %}
+{% block content %}
+<br>
+
+<div class="col-md-8">
+	<div class="card card-body">	
+		<a class="btn btn-primary  btn-sm btn-block" href="">Post Upgrade Validation</a>
+		<form action="{% url 'upgrade_postcheck' %}" method="post">
+			{% csrf_token %}
+			<table class="table table-">
+				<tr>
+
+					<th>Current Bootvar</th>
+					<th>Previous Bootvar</th>
+				</tr>
+				<tr>
+					<td>{{ image_Name }}</td>
+					<td>{{ current_image }}</td>	
+				</tr>
+			</table>
+			<input type="hidden" name="id" value = '{{id}}'/>	
+			<center><input type="submit" value = 'Post Upgrade Validation'></center>
+		</form>
+	</div>
+	<br>
+
+	<!-- Download Post Upgrade Validation -->
+	<div class="card card-body">
+		<a class="btn btn-primary  btn-sm btn-block" href="">Post Upgrade Validation Output</a>
+		{%  include 'outputbox.html' %}
+
+		<hr>
+
+		<form action="{% url 'compare_config' %}" method="post">
+			{% csrf_token %}
+			<center><input type="submit" value = 'Compare Configuration'></center>
+			<input type="hidden" name="id" value = '{{id}}'/>							
+		</form>
+	</div>
+
+</div>
+
+{% endblock %}

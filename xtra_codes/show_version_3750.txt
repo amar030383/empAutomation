@@ -1,0 +1,24 @@
+Switch>show version
+Cisco Internetwork Operating System Software
+IOS (tm) C2950 Software (C2950-I6Q4L2-M), Version 12.1(22)EA13, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2009 by cisco Systems, Inc.
+Compiled Fri 27-Feb-09 22:20 by amvarma
+Image text-base: 0x80010000, data-base: 0x80570000
+ROM: Bootstrap program is C2950 boot loader
+Switch uptime is 0 minutes
+System returned to ROM by power-on
+System image file is "flash:c2950-i6q4l2-mz.121-22.EA13.bin"
+cisco WS-C2950-12 (RC32300) processor (revision B0) with 20957K bytes of memory.
+Processor board ID FAB0535Q22L
+Last reset from system-reset
+Running Standard Image
+12 FastEthernet/IEEE 802.3 interface(s)
+32K bytes of flash-simulated non-volatile configuration memory.
+Base ethernet MAC Address: 00:06:D6:AB:A0:40
+Motherboard assembly number: 73-5782-08
+Motherboard serial number: FAB0535BC1K
+Model revision number: B0
+Model number: WS-C2950-12
+System serial number: FAB0535Q22L
+Configuration register is 0xF

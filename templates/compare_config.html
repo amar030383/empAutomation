@@ -1,0 +1,74 @@
+{%  extends 'main.html' %}
+{% load static %}
+{% block content %}
+<br>
+
+<style>
+  mark { background-color: orange; color: black;}
+  mark2 { background-color: lightgreen; color: black;}
+</style>
+  
+<div class="row">
+    <div class="col-md">
+        <div class="card text-center text-black  mb-3">
+              <div class="card-body">
+                <a class="btn btn-primary  btn-sm btn-block" href="">Pre Upgrade Command Output</a>
+                <br>
+                <textarea id=inputTextToSave rows="9" cols="72" name="conf" form="conf" id="conf" readonly>
+                  {% for x in result %}
+                    {{x}}
+                  {% endfor %}
+  
+                </textarea>
+              </div>
+        </div>
+    </div>
+
+    <div class="col-md">
+      <div class="card text-center text-black  mb-3" >
+            <div class="card-body">
+              <a class="btn btn-primary  btn-sm btn-block" href="">Post Upgrade Command Output</a>
+              <br>
+              <textarea id=inputTextToSave rows="9" cols="72" name="conf" form="conf" id="conf" readonly>
+                {% for x in result2 %}
+                  {{x}}
+                {% endfor %}
+              </textarea>
+            </div>
+      </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md">
+      <div class="card text-black  mb-3" >
+            <div class="card-body">
+              <a class="btn btn-primary  btn-sm btn-block" href="">Configuration Difference Detected</a>
+              <ol>
+                {% for x in result3 %}
+                  {% if '+' in x %}
+                  <li><mark>{{x}}</mark></li>
+                  {% else %}
+                    <li><mark2>{{x}}</mark2></li>
+                  {% endif %}
+                {% endfor %}
+              </ol> 
+            
+            <!-- <a class="btn btn-primary  btn-sm btn-block" href="">Upgrade Feedback</a> -->
+              <hr>
+      
+              <form action = "{% url 'statusUpgrade' %}" method="post">
+              {% csrf_token %}           
+                  How was the upgrade?
+                  <input type="hidden" name="id" value = '{{id}}'/>
+                  <input type="submit" name = 'Successful' value = 'Successful'>
+                  <input type="submit" name = 'Failed' value = 'Failed'>
+                  <input type="submit" name = 'Completed_with_Issues' value = 'Completed with Issues'>
+              </form>
+          </div>
+
+      </div>
+    </div>   
+</div>
+
+{% endblock content %}

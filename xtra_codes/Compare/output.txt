@@ -1,0 +1,22 @@
+System serial number: FAB0535Q22L
+Motherboard serial number: FAB0535BC1K
+ROM: Bootstrap program is C2950 boot loader
+Compiled Fri 27-Feb-09 22:20 by amvarma
+Motherboard assembly number: 73-5782-08
+Switch uptime is 0 minutes
+Technical Support: http://www.cisco.com/techsupport
+Running Standard Image
+Copyright (c) 1986-2009 by cisco Systems, Inc.
+System returned to ROM by power-on
+IOS (tm) C2950 Software (C2950-I6Q4L2-M), Version 12.1(22)EA13, RELEASE SOFTWARE (fc2)
+Switch>show version
+Model revision number: B0
+Model number: WS-C2950-12
+Processor board ID FAB0535Q22L
+cisco WS-C2950-12 (RC32300) processor (revision B0) with 20957K bytes of memory.
+Configuration register is 0xFImage text-base: 0x80010000, data-base: 0x80570000
+12 FastEthernet/IEEE 802.3 interface(s)
+Cisco Internetwork Operating System Software
+32K bytes of flash-simulated non-volatile configuration memory.
+Last reset from system-reset
+Base ethernet MAC Address: 00:06:D6:AB:A0:40

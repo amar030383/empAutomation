@@ -1,0 +1,17 @@
+#logo{}
+body{background-color: #ebeff5;}
+#total-orders{background-color: #4cb4c7;}
+#orders-delivered{background-color: #7abecc;}
+#orders-pending{background-color: #7CD1C0;}
+
+.table1 { width:60%; border: 0px solid#555; margin-top: 0px; margin-left: 0px;}
+.td1 { width: 50%; padding: 5px;text-align: left;border: 1px solid#555;}
+.th1 { width: 50%; text-align: center; background-color: #005b96; color: white; padding: 10px; font-size: 15px;}
+.tr1 { width: 50%; padding: 2px;text-align: center;}
+.table1#t01 tr:nth-child(even) {background-color: #eee;}
+.table1#t01 tr:nth-child(odd) {background-color: #fff;}
+
+
+#just-line-break { white-space: pre-line;}
+  
+#line-break-and-tab { white-space: pre-wrap;}

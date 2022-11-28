@@ -1,0 +1,112 @@
+{%  extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<script>
+	sessionStorage.setItem('object_id' , '{{object_id}}');
+</script>
+
+<br>
+
+<div class="col-md-6">
+
+	<!-- User input form -->
+	<div class="card card-body">
+		<form action = '' method="post">	
+			<table class="table table-sm">
+				<center><a class="btn btn-primary  btn-sm btn-block" href="">Please fill the form below</a></center>
+				<tr>
+					{% csrf_token %}
+					{{form.as_table}}
+				</tr>
+			</table>
+			<center><input type="submit" value = 'Start Validation'></center>
+		</form>
+	</div>
+
+
+	<br>
+	<!-- Validation check -->
+	<div class="card card-body">
+		<a class="btn btn-primary  btn-sm btn-block" href="">Step#2: Start Validation </a>
+		
+		<table class="table">
+			<ul>
+			<tr>Change Status : {{ change_status }}</tr><br>
+			<tr>Device Reachable : {{ device_status }}</tr><br>
+			<tr>TFTP Reachable : {{ tftp_status }}</tr><br>
+			<tr>Image Available : {{ image_available }}</tr><br>
+			<tr>MD5 Matches : {{ md5_match }}</tr><br>
+			<tr>Free Space(MB) : {{ free_space }}</tr><br>
+			<tr>Current Image : {{ current_image }}</tr><br>
+		</ul>
+		</table>
+	</div>
+
+	<br>
+
+	<!-- Configuration Output -->
+	<div class="card card-body">
+		<a class="btn btn-primary  btn-sm btn-block" href="">Step#3: Config Output</a>
+		{%  include 'outputbox.html' %}
+	</div>
+
+	<br>
+
+	<!-- Upload Image -->
+	<div class="card card-body">
+		<script>
+			var tftp_ips = sessionStorage.getItem('tftp_ip')
+			console.log(tftp_ips)
+		</script>
+		<form action = "{% url 'upload_image' %}" method="post">	
+			{% csrf_token %}
+				<a class="btn btn-primary  btn-sm btn-block" href="">Step#4: Upload Image</a>
+				<table class="table table-">
+					<tr>
+						<th></th>
+						<th>Copy Image</th>
+						<th>From Server</th>
+						<th>To Device</th>
+						<th>Upload time(Minutes)</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td>{{ image_name }}</td>
+						<td>{{ tftp_ip }}</td>	
+						<td>{{ device_ip }}</td>
+						<td>
+							<select class="selectbox" name="upload_time" required>
+								<script language="javascript" type="text/javascript"> 
+									var time = new Array("6", '9','12', '15',"18", '21',"24" );
+									for (i=0;i<time.length;i++)
+									{
+										document.write("<option>"+time[i]+"</option>");
+									}
+								</script>
+							</select>
+						</td>
+
+					</tr>
+						<input type="hidden" name="device_ip" value = '{{device_ip}}'/>
+						<input type="hidden" name="device_username" value = '{{device_username}}'/>	
+						<input type="hidden" name="device_password" value = '{{device_password}}'/>
+						<input type="hidden" name="enable_password" value = '{{enable_password}}'/>
+						<input type="hidden" name="md5_value" value = '{{md5_value}}'/>
+						<input type="hidden" name="tftp_ip" value = '{{tftp_ip}}'/>
+						<input type="hidden" name="tftp_username" value = '{{tftp_username}}'/>	
+						<input type="hidden" name="tftp_password" value = '{{tftp_password}}'/>	
+						<input type="hidden" name="image_name" value = '{{image_name}}'/>
+						<input type="hidden" name="free_space" value = '{{free_space}}'/>	
+						<input type="hidden" name="object_id" value = '{{object_id}}'/>	
+						<input type="hidden" name="current_image" value = '{{current_image}}'/>	
+					</table>			
+		<center><input type="submit" value = 'Start Upload'></center>
+		</form>
+	</div>
+
+	<br>
+</div>
+
+
+{% endblock content %}
